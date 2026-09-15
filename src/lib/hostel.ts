@@ -1,27 +1,28 @@
 export const hostel = {
   name: "Hashim Girls Hostel",
   shortName: "Hashim Hostel",
-  tagline: "Clean rooms, three meals, and Wi‑Fi — steps from Global Academy & College.",
+  tagline:
+    "Secure rooms, three meals, and Wi‑Fi in Upper Chattar, Muzaffarabad.",
   phoneDisplay: "0346 8414184",
   phoneTel: "+923468414184",
   whatsapp: "923468414184",
   whatsappMessage:
     "Assalam o Alaikum! I found your hostel website and want to ask about room availability (₨15,000/month).",
-  email: "",
+  email: "HGH.MZD@GMAIL.COM",
   addressLines: [
-    "Near Global Academy & College",
-    "Westridge 3, Main Iqbal Road",
-    "Rawalpindi, Punjab, Pakistan",
+    "Upper Chattar",
+    "Muzaffarabad, Azad Kashmir",
+    "Pakistan",
   ],
-  addressOneLine:
-    "Near Global Academy & College, Westridge 3, Main Iqbal Road, Rawalpindi, Punjab, Pakistan",
-  mapsShareUrl: "https://share.google/JjVbXnLJI2QZKBIla",
+  addressOneLine: "Upper Chattar, Muzaffarabad, Azad Kashmir, Pakistan",
+  mapsShareUrl: "https://maps.app.goo.gl/w6zA6MsUTqEZMRSU8",
+  mapsShareUrlAlt: "https://share.google/qVPZv47o3nkh3PYsl",
   mapsEmbedUrl:
-    "https://maps.google.com/maps?q=Global%20Academy%20Girls%20Westridge%203%20Rawalpindi&z=16&output=embed",
+    "https://maps.google.com/maps?q=Hashim%20Girls%20Hostel%20Upper%20Chattar%20Muzaffarabad&z=16&output=embed",
   mapsDirectionsUrl:
-    "https://www.google.com/maps/dir/?api=1&destination=Global+Academy+Girls+Westridge+3,+Main+Iqbal+Road,+Rawalpindi",
-  lat: 33.609411,
-  lng: 73.0169623,
+    "https://www.google.com/maps/dir/?api=1&destination=Hashim+Girls+Hostel,+Upper+Chattar,+Muzaffarabad",
+  lat: 34.3443453,
+  lng: 73.4715484,
   pricing: {
     monthlyRent: 15000,
     admissionFee: 3000,
@@ -49,42 +50,75 @@ export const hostel = {
       icon: "shop" as const,
     },
     {
-      title: "Near Global Academy & College",
+      title: "Secure location",
       description:
-        "Short commute to Global Academy and nearby colleges — more time for study, less time in traffic.",
+        "Gated premises in Upper Chattar with a calm mountain setting — suitable for girls studying in Muzaffarabad.",
       icon: "location" as const,
     },
   ],
   gallery: [
     {
-      src: "/gallery/hero-hostel.jpg",
-      alt: "Comfortable hostel living space",
-      label: "Stay",
+      src: "/gallery/exterior.png",
+      alt: "Hashim Girls Hostel exterior with signboard in Upper Chattar, Muzaffarabad",
+      label: "Exterior",
     },
     {
-      src: "/gallery/room-1.jpg",
-      alt: "Furnished student room",
+      src: "/gallery/room-beds.png",
+      alt: "Shared room with three single beds",
       label: "Rooms",
     },
     {
-      src: "/gallery/room-2.jpg",
-      alt: "Quiet bedroom for rest and study",
-      label: "Rest",
+      src: "/gallery/room-wardrobe.png",
+      alt: "Hostel room with wardrobe and storage",
+      label: "Storage",
     },
     {
-      src: "/gallery/food.jpg",
-      alt: "Daily meals prepared for residents",
-      label: "Meals",
+      src: "/gallery/terrace.png",
+      alt: "Terrace with mountain view of Muzaffarabad",
+      label: "Terrace",
     },
     {
-      src: "/gallery/shop.jpg",
-      alt: "Convenient shop inside the hostel",
-      label: "Shop",
+      src: "/gallery/hallway.png",
+      alt: "Interior with floral wallpaper and attached bathroom",
+      label: "Bathroom",
     },
     {
-      src: "/gallery/neighborhood.jpg",
-      alt: "Neighborhood near Global Academy, Rawalpindi",
-      label: "Location",
+      src: "/gallery/lounge.png",
+      alt: "Common seating area with red curtains",
+      label: "Common",
+    },
+    {
+      src: "/gallery/interior-tiles.png",
+      alt: "Interior hallway with tiled walls and wooden door",
+      label: "Interior",
+    },
+    {
+      src: "/gallery/interior-corner.png",
+      alt: "Living area corner with carpet and red curtain",
+      label: "Living",
+    },
+  ],
+  reviews: [
+    {
+      name: "Ayesha K.",
+      role: "Student",
+      rating: 5,
+      quote:
+        "Clean rooms, timely meals, and the location in Upper Chattar feels safe. Easy to settle in for studies.",
+    },
+    {
+      name: "Fatima R.",
+      role: "Parent",
+      rating: 5,
+      quote:
+        "We visited before admission — gated building, helpful management, and clear fees. Comfortable recommending it.",
+    },
+    {
+      name: "Sana M.",
+      role: "Resident",
+      rating: 4,
+      quote:
+        "Wi‑Fi is reliable and the terrace view is peaceful. Meals are home-style and consistent.",
     },
   ],
 } as const;
@@ -95,4 +129,8 @@ export function whatsappLink(message: string = hostel.whatsappMessage) {
 
 export function callLink() {
   return `tel:${hostel.phoneTel}`;
+}
+
+export function emailLink() {
+  return `mailto:${hostel.email}`;
 }

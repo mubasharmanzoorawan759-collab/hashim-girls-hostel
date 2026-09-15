@@ -1,15 +1,17 @@
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { callLink, hostel, whatsappLink } from "@/lib/hostel";
+import { callLink, emailLink, hostel, whatsappLink } from "@/lib/hostel";
 import {
   MapPin,
   Phone,
   Wifi,
   UtensilsCrossed,
   Store,
-  GraduationCap,
+  Shield,
   MessageCircle,
   Navigation,
+  Mail,
+  Star,
 } from "lucide-react";
 import Image from "next/image";
 import type { ReactNode } from "react";
@@ -24,7 +26,7 @@ function AmenityIcon({ icon }: { icon: (typeof hostel.amenities)[number]["icon"]
     case "shop":
       return <Store className={className} aria-hidden />;
     case "location":
-      return <GraduationCap className={className} aria-hidden />;
+      return <Shield className={className} aria-hidden />;
   }
 }
 
@@ -75,6 +77,9 @@ export default function Home() {
             <a href="#gallery" className="transition hover:text-white">
               Photos
             </a>
+            <a href="#reviews" className="transition hover:text-white">
+              Reviews
+            </a>
             <a href="#location" className="transition hover:text-white">
               Location
             </a>
@@ -96,11 +101,11 @@ export default function Home() {
       <main id="top" className="flex-1">
         <section className="relative min-h-[100svh] overflow-hidden">
           <Image
-            src="/gallery/hero-hostel.jpg"
-            alt="Student hostel living space"
+            src="/gallery/exterior.png"
+            alt="Hashim Girls Hostel exterior in Upper Chattar, Muzaffarabad"
             fill
             priority
-            className="object-cover animate-fade-in"
+            className="object-cover object-[center_35%] animate-fade-in"
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0a1c24]/92 via-[#0a1c24]/72 to-[#0a1c24]/35" />
@@ -112,7 +117,7 @@ export default function Home() {
               {hostel.name}
             </p>
             <h1 className="animate-rise-delay-1 mt-5 max-w-xl text-xl font-medium leading-snug text-white/95 sm:text-2xl">
-              A calm place to study and rest near Global Academy.
+              A secure girls hostel in Upper Chattar, Muzaffarabad.
             </h1>
             <p className="animate-rise-delay-2 mt-4 max-w-lg text-base leading-relaxed text-white/75 sm:text-lg">
               {hostel.tagline}
@@ -149,7 +154,7 @@ export default function Home() {
               Everything a student needs, under one roof
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Daily meals, fast Wi‑Fi, an in-house shop, and a location built for campus life.
+              Daily meals, fast Wi‑Fi, an in-house shop, and a secure setting in Upper Chattar.
             </p>
           </div>
 
@@ -237,7 +242,7 @@ export default function Home() {
                 A closer look at life here
               </h2>
               <p className="mt-4 text-lg text-white/70">
-                Rooms, meals, and the neighborhood around Global Academy & College.
+                Real photos from Hashim Girls Hostel in Upper Chattar, Muzaffarabad.
               </p>
             </div>
 
@@ -269,6 +274,46 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="reviews" className="border-y border-border bg-white/70 py-20 backdrop-blur-sm sm:py-28">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal">
+                Reviews
+              </p>
+              <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+                What families and students say
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Feedback from residents and parents about safety, meals, and study life in
+                Muzaffarabad.
+              </p>
+            </div>
+
+            <ul className="mt-12 grid gap-10 md:grid-cols-3">
+              {hostel.reviews.map((review) => (
+                <li key={review.name} className="border-t border-teal/30 pt-6">
+                  <div className="flex gap-1" aria-label={`${review.rating} out of 5 stars`}>
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`size-4 ${
+                          i < review.rating ? "fill-teal text-teal" : "text-border"
+                        }`}
+                        aria-hidden
+                      />
+                    ))}
+                  </div>
+                  <blockquote className="mt-4 text-base leading-relaxed text-ink">
+                    “{review.quote}”
+                  </blockquote>
+                  <p className="mt-4 font-display text-sm font-bold text-ink">{review.name}</p>
+                  <p className="text-sm text-muted-foreground">{review.role}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         <section id="location" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
           <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
             <div>
@@ -276,11 +321,11 @@ export default function Home() {
                 Location
               </p>
               <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
-                Near Global Academy & College
+                Upper Chattar, Muzaffarabad
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-                Easy walking distance to Global Academy and nearby colleges in Westridge 3,
-                Rawalpindi — ideal for students who want less commute and more study time.
+                Located in Upper Chattar with mountain views — a practical base for girls studying
+                in Muzaffarabad, Azad Kashmir.
               </p>
 
               <div className="mt-8 flex gap-3">
@@ -294,7 +339,7 @@ export default function Home() {
                 </address>
               </div>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <LinkButton
                   href={hostel.mapsDirectionsUrl}
                   external
@@ -305,6 +350,9 @@ export default function Home() {
                 </LinkButton>
                 <LinkButton href={hostel.mapsShareUrl} external variant="outline">
                   Open in Google Maps
+                </LinkButton>
+                <LinkButton href={hostel.mapsShareUrlAlt} external variant="outline">
+                  Alternate Maps link
                 </LinkButton>
               </div>
             </div>
@@ -332,11 +380,10 @@ export default function Home() {
               Ready to reserve a bed?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground">
-              Call or WhatsApp for room availability, meal plans, and visiting hours. We reply
-              quickly.
+              Call, WhatsApp, or email for room availability, meal plans, and visiting hours.
             </p>
 
-            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
               <LinkButton
                 href={callLink()}
                 size="lg"
@@ -355,6 +402,15 @@ export default function Home() {
                 <MessageCircle className="size-5" />
                 Chat on WhatsApp
               </LinkButton>
+              <LinkButton
+                href={emailLink()}
+                size="lg"
+                variant="outline"
+                className="h-12 min-w-[200px]"
+              >
+                <Mail className="size-5" />
+                {hostel.email}
+              </LinkButton>
             </div>
           </div>
         </section>
@@ -370,6 +426,9 @@ export default function Home() {
             <a href={callLink()} className="text-white/80 transition hover:text-white">
               {hostel.phoneDisplay}
             </a>
+            <a href={emailLink()} className="text-white/80 transition hover:text-white">
+              {hostel.email}
+            </a>
             <a
               href={whatsappLink()}
               target="_blank"
@@ -378,13 +437,8 @@ export default function Home() {
             >
               WhatsApp
             </a>
-            <a
-              href={hostel.mapsShareUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/80 transition hover:text-white"
-            >
-              Maps
+            <a href={`mailto:${hostel.email}`} className="text-white/80 transition hover:text-white">
+              {hostel.email}
             </a>
           </div>
         </div>

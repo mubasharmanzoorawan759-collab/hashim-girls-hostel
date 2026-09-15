@@ -21,8 +21,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `${hostel.name} | Girls Hostel near Global Academy, Rawalpindi`,
-  description: `${hostel.tagline} Call or WhatsApp ${hostel.phoneDisplay}. ${hostel.addressOneLine}`,
+  title: `${hostel.name} | Girls Hostel in Upper Chattar, Muzaffarabad`,
+  description: `${hostel.tagline} Call or WhatsApp ${hostel.phoneDisplay}. Email ${hostel.email}. ${hostel.addressOneLine}`,
   openGraph: {
     title: hostel.name,
     description: hostel.tagline,
