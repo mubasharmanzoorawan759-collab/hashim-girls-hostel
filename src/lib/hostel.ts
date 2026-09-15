@@ -1,6 +1,6 @@
 export const hostel = {
-  name: "Awan Boys Hostel",
-  shortName: "Awan Hostel",
+  name: "Hashim Girls Hostel",
+  shortName: "Hashim Hostel",
   tagline: "Clean rooms, three meals, and Wi‑Fi — steps from Global Academy & College.",
   phoneDisplay: "0346 8414184",
   phoneTel: "+923468414184",
@@ -17,9 +17,9 @@ export const hostel = {
     "Near Global Academy & College, Westridge 3, Main Iqbal Road, Rawalpindi, Punjab, Pakistan",
   mapsShareUrl: "https://share.google/JjVbXnLJI2QZKBIla",
   mapsEmbedUrl:
-    "https://maps.google.com/maps?q=Global%20Academy%20Boys%20Westridge%203%20Rawalpindi&z=16&output=embed",
+    "https://maps.google.com/maps?q=Global%20Academy%20Girls%20Westridge%203%20Rawalpindi&z=16&output=embed",
   mapsDirectionsUrl:
-    "https://www.google.com/maps/dir/?api=1&destination=Global+Academy+(Boys)+Westridge+3,+Main+Iqbal+Road,+Rawalpindi",
+    "https://www.google.com/maps/dir/?api=1&destination=Global+Academy+Girls+Westridge+3,+Main+Iqbal+Road,+Rawalpindi",
   lat: 33.609411,
   lng: 73.0169623,
   pricing: {

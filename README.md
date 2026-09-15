@@ -1,11 +1,12 @@
-# Awan Boys Hostel
+# Hashim Girls Hostel
 
-Professional website for **Awan Boys Hostel** near Global Academy & College, Westridge 3, Rawalpindi.
+Professional website for **Hashim Girls Hostel** near Global Academy & College, Westridge 3, Rawalpindi.
 
 ## Features
 
 - Call and WhatsApp booking CTAs (`0346 8414184`)
 - Three-time meals, Wi‑Fi, in-house shop, campus-near location
+- Pricing: ₨15,000/month, ₨3,000 admission, no security deposit
 - Photo gallery and embedded Google Map
 - Mobile sticky Call / WhatsApp bar
 
