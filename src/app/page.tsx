@@ -69,6 +69,9 @@ export default function Home() {
             <a href="#amenities" className="transition hover:text-white">
               Facilities
             </a>
+            <a href="#pricing" className="transition hover:text-white">
+              Fees
+            </a>
             <a href="#gallery" className="transition hover:text-white">
               Photos
             </a>
@@ -166,6 +169,62 @@ export default function Home() {
               </li>
             ))}
           </ul>
+        </section>
+
+        <section id="pricing" className="border-y border-border bg-white/70 py-20 backdrop-blur-sm sm:py-28">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal">Fees</p>
+              <h2 className="font-display mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+                Simple, student-friendly pricing
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground">{hostel.pricing.note}</p>
+            </div>
+
+            <dl className="mt-12 grid gap-8 sm:grid-cols-3">
+              <div className="border-t border-teal/30 pt-6">
+                <dt className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+                  Monthly rent
+                </dt>
+                <dd className="font-display mt-2 text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
+                  ₨{hostel.pricing.monthlyRent.toLocaleString("en-PK")}
+                </dd>
+                <p className="mt-2 text-sm text-muted-foreground">Per month</p>
+              </div>
+              <div className="border-t border-teal/30 pt-6">
+                <dt className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+                  Admission
+                </dt>
+                <dd className="font-display mt-2 text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
+                  ₨{hostel.pricing.admissionFee.toLocaleString("en-PK")}
+                </dd>
+                <p className="mt-2 text-sm text-muted-foreground">One-time fee</p>
+              </div>
+              <div className="border-t border-teal/30 pt-6">
+                <dt className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+                  Security deposit
+                </dt>
+                <dd className="font-display mt-2 text-4xl font-extrabold tracking-tight text-teal sm:text-5xl">
+                  None
+                </dd>
+                <p className="mt-2 text-sm text-muted-foreground">No security required</p>
+              </div>
+            </dl>
+
+            <div className="mt-10">
+              <LinkButton
+                href={whatsappLink(
+                  "Assalam o Alaikum! I want to ask about admission and a room at ₨15,000/month."
+                )}
+                external
+                size="lg"
+                className="h-12 bg-teal px-6 text-base text-white hover:bg-teal/90"
+              >
+                <MessageCircle className="size-5" />
+                Ask about a room
+              </LinkButton>
+            </div>
+          </div>
         </section>
 
         <section id="gallery" className="bg-[#10232c] py-20 text-white sm:py-28">

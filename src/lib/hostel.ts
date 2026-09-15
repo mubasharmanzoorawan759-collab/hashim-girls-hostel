@@ -6,7 +6,7 @@ export const hostel = {
   phoneTel: "+923468414184",
   whatsapp: "923468414184",
   whatsappMessage:
-    "Assalam o Alaikum! I found your hostel website and want to ask about room availability.",
+    "Assalam o Alaikum! I found your hostel website and want to ask about room availability (₨15,000/month).",
   email: "",
   addressLines: [
     "Near Global Academy & College",
@@ -22,6 +22,13 @@ export const hostel = {
     "https://www.google.com/maps/dir/?api=1&destination=Global+Academy+(Boys)+Westridge+3,+Main+Iqbal+Road,+Rawalpindi",
   lat: 33.609411,
   lng: 73.0169623,
+  pricing: {
+    monthlyRent: 15000,
+    admissionFee: 3000,
+    securityDeposit: 0,
+    currency: "PKR",
+    note: "Monthly rent includes three-time meals. No security deposit required.",
+  },
   amenities: [
     {
       title: "Three-time meals",
