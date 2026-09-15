@@ -324,8 +324,8 @@ export default function Home() {
                 Upper Chattar, Muzaffarabad
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-                Located in Upper Chattar, Muzaffarabad — close to Global Academy and nearby
-                colleges, with hill views from the terrace.
+                Located in Upper Chattar with mountain views — a practical base for girls studying
+                in Muzaffarabad, Azad Kashmir.
               </p>
 
               <div className="mt-8 flex gap-3">
