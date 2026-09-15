@@ -89,7 +89,7 @@ export const hostel = {
   ],
 } as const;
 
-export function whatsappLink(message = hostel.whatsappMessage) {
+export function whatsappLink(message: string = hostel.whatsappMessage) {
   return `https://wa.me/${hostel.whatsapp}?text=${encodeURIComponent(message)}`;
 }
 
