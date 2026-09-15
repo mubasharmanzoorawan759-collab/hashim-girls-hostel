@@ -1,6 +1,14 @@
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { callLink, emailLink, hostel, whatsappLink } from "@/lib/hostel";
+import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import {
+  type AmenityIconName,
+  type ButtonSize,
+  type ButtonVariant,
+  callLink,
+  emailLink,
+  hostel,
+  whatsappLink,
+} from "@/lib/hostel"
 import {
   MapPin,
   Phone,
@@ -12,87 +20,102 @@ import {
   Navigation,
   Mail,
   Star,
-} from "lucide-react";
-import Image from "next/image";
-import type { ReactNode } from "react";
+} from "lucide-react"
+import Image from "next/image"
+import type { ReactNode } from "react"
 
-function AmenityIcon({ icon }: { icon: (typeof hostel.amenities)[number]["icon"] }) {
-  const className = "size-6 text-teal";
-  switch (icon) {
-    case "meal":
-      return <UtensilsCrossed className={className} aria-hidden />;
-    case "wifi":
-      return <Wifi className={className} aria-hidden />;
-    case "shop":
-      return <Store className={className} aria-hidden />;
-    case "location":
-      return <Shield className={className} aria-hidden />;
+const amenityIconClassName = "size-6 text-teal"
+
+const AmenityIcon = ({ icon }: { icon: AmenityIconName }) => {
+  if (icon === "meal") {
+    return <UtensilsCrossed className={amenityIconClassName} aria-hidden />
   }
+
+  if (icon === "wifi") {
+    return <Wifi className={amenityIconClassName} aria-hidden />
+  }
+
+  if (icon === "shop") {
+    return <Store className={amenityIconClassName} aria-hidden />
+  }
+
+  return <Shield className={amenityIconClassName} aria-hidden />
 }
 
-function LinkButton({
+type LinkButtonProps = {
+  href: string
+  children: ReactNode
+  className?: string
+  variant?: ButtonVariant
+  size?: ButtonSize
+  external?: boolean
+  ariaLabel: string
+}
+
+const LinkButton = ({
   href,
   children,
   className,
   variant = "default",
   size = "default",
-  external,
-}: {
-  href: string;
-  children: ReactNode;
-  className?: string;
-  variant?: "default" | "outline" | "secondary" | "ghost" | "destructive" | "link";
-  size?: "default" | "xs" | "sm" | "lg" | "icon" | "icon-xs" | "icon-sm" | "icon-lg";
-  external?: boolean;
-}) {
+  external = false,
+  ariaLabel,
+}: LinkButtonProps) => {
   return (
     <a
       href={href}
+      aria-label={ariaLabel}
       className={cn(buttonVariants({ variant, size }), className)}
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
     >
       {children}
     </a>
-  );
+  )
 }
 
-export default function Home() {
+const Home = () => {
+  const admissionWhatsAppHref = whatsappLink(
+    "Assalam o Alaikum! I want to ask about admission and a room at ₨15,000/month."
+  )
+
   return (
     <>
+      <a
+        href="#amenities"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:text-ink"
+      >
+        Skip to main content
+      </a>
+
       <header className="absolute inset-x-0 top-0 z-30">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5 sm:px-6">
           <a
             href="#top"
+            aria-label={`${hostel.shortName} home`}
             className="font-display text-lg font-bold tracking-tight text-white sm:text-xl"
           >
             {hostel.shortName}
           </a>
-          <nav className="hidden items-center gap-8 text-sm font-medium text-white/85 md:flex">
-            <a href="#amenities" className="transition hover:text-white">
-              Facilities
-            </a>
-            <a href="#pricing" className="transition hover:text-white">
-              Fees
-            </a>
-            <a href="#gallery" className="transition hover:text-white">
-              Photos
-            </a>
-            <a href="#reviews" className="transition hover:text-white">
-              Reviews
-            </a>
-            <a href="#location" className="transition hover:text-white">
-              Location
-            </a>
-            <a href="#contact" className="transition hover:text-white">
-              Contact
-            </a>
+          <nav aria-label="Primary" className="hidden items-center gap-8 text-sm font-medium text-white/85 md:flex">
+            {hostel.navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                aria-label={item.label}
+                className="transition hover:text-white"
+              >
+                {item.label}
+              </a>
+            ))}
           </nav>
           <LinkButton
             href={callLink()}
             size="sm"
+            ariaLabel={`Call ${hostel.name} at ${hostel.phoneDisplay}`}
             className="bg-white text-ink hover:bg-white/90"
           >
-            <Phone className="size-4" />
+            <Phone className="size-4" aria-hidden />
             Call now
           </LinkButton>
         </div>
@@ -105,7 +128,7 @@ export default function Home() {
             alt="Hashim Girls Hostel exterior in Upper Chattar, Muzaffarabad"
             fill
             priority
-            className="object-cover object-[center_35%] animate-fade-in"
+            className="animate-fade-in object-cover object-[center_35%]"
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0a1c24]/92 via-[#0a1c24]/72 to-[#0a1c24]/35" />
@@ -126,9 +149,10 @@ export default function Home() {
               <LinkButton
                 href={callLink()}
                 size="lg"
+                ariaLabel={`Call ${hostel.phoneDisplay}`}
                 className="h-12 bg-teal px-6 text-base text-white hover:bg-teal/90"
               >
-                <Phone className="size-5" />
+                <Phone className="size-5" aria-hidden />
                 Call {hostel.phoneDisplay}
               </LinkButton>
               <LinkButton
@@ -136,9 +160,10 @@ export default function Home() {
                 external
                 size="lg"
                 variant="outline"
+                ariaLabel="Chat on WhatsApp"
                 className="h-12 border-white/40 bg-white/10 px-6 text-base text-white backdrop-blur hover:bg-white/20 hover:text-white"
               >
-                <MessageCircle className="size-5" />
+                <MessageCircle className="size-5" aria-hidden />
                 WhatsApp
               </LinkButton>
             </div>
@@ -218,14 +243,13 @@ export default function Home() {
 
             <div className="mt-10">
               <LinkButton
-                href={whatsappLink(
-                  "Assalam o Alaikum! I want to ask about admission and a room at ₨15,000/month."
-                )}
+                href={admissionWhatsAppHref}
                 external
                 size="lg"
+                ariaLabel="Ask about a room on WhatsApp"
                 className="h-12 bg-teal px-6 text-base text-white hover:bg-teal/90"
               >
-                <MessageCircle className="size-5" />
+                <MessageCircle className="size-5" aria-hidden />
                 Ask about a room
               </LinkButton>
             </div>
@@ -247,29 +271,36 @@ export default function Home() {
             </div>
 
             <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
-              {hostel.gallery.map((photo, i) => (
-                <figure
-                  key={photo.src}
-                  className={`relative overflow-hidden ${
-                    i === 0
-                      ? "col-span-2 aspect-[16/10] md:col-span-2 md:row-span-2 md:aspect-auto md:min-h-[420px]"
-                      : "aspect-[4/3]"
-                  }`}
-                >
-                  <Image
-                    src={photo.src}
-                    alt={photo.alt}
-                    fill
-                    className="object-cover transition duration-700 hover:scale-[1.03]"
-                    sizes={
-                      i === 0 ? "(max-width:768px) 100vw, 66vw" : "(max-width:768px) 50vw, 33vw"
-                    }
-                  />
-                  <figcaption className="absolute bottom-3 left-3 rounded bg-black/45 px-2.5 py-1 text-xs font-medium tracking-wide text-white backdrop-blur-sm">
-                    {photo.label}
-                  </figcaption>
-                </figure>
-              ))}
+              {hostel.gallery.map((photo, index) => {
+                const isFeatured = index === 0
+
+                return (
+                  <figure
+                    key={photo.src}
+                    className={cn(
+                      "relative overflow-hidden",
+                      isFeatured &&
+                        "col-span-2 aspect-[16/10] md:col-span-2 md:row-span-2 md:aspect-auto md:min-h-[420px]",
+                      !isFeatured && "aspect-[4/3]"
+                    )}
+                  >
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      fill
+                      className="object-cover transition duration-700 hover:scale-[1.03]"
+                      sizes={
+                        isFeatured
+                          ? "(max-width:768px) 100vw, 66vw"
+                          : "(max-width:768px) 50vw, 33vw"
+                      }
+                    />
+                    <figcaption className="absolute bottom-3 left-3 rounded bg-black/45 px-2.5 py-1 text-xs font-medium tracking-wide text-white backdrop-blur-sm">
+                      {photo.label}
+                    </figcaption>
+                  </figure>
+                )
+              })}
             </div>
           </div>
         </section>
@@ -293,12 +324,13 @@ export default function Home() {
               {hostel.reviews.map((review) => (
                 <li key={review.name} className="border-t border-teal/30 pt-6">
                   <div className="flex gap-1" aria-label={`${review.rating} out of 5 stars`}>
-                    {Array.from({ length: 5 }).map((_, i) => (
+                    {Array.from({ length: 5 }).map((_, starIndex) => (
                       <Star
-                        key={i}
-                        className={`size-4 ${
-                          i < review.rating ? "fill-teal text-teal" : "text-border"
-                        }`}
+                        key={starIndex}
+                        className={cn(
+                          "size-4",
+                          starIndex < review.rating ? "fill-teal text-teal" : "text-border"
+                        )}
                         aria-hidden
                       />
                     ))}
@@ -343,15 +375,26 @@ export default function Home() {
                 <LinkButton
                   href={hostel.mapsDirectionsUrl}
                   external
+                  ariaLabel="Get directions to Hashim Girls Hostel"
                   className="bg-teal text-white hover:bg-teal/90"
                 >
-                  <Navigation className="size-4" />
+                  <Navigation className="size-4" aria-hidden />
                   Get directions
                 </LinkButton>
-                <LinkButton href={hostel.mapsShareUrl} external variant="outline">
+                <LinkButton
+                  href={hostel.mapsShareUrl}
+                  external
+                  variant="outline"
+                  ariaLabel="Open Hashim Girls Hostel in Google Maps"
+                >
                   Open in Google Maps
                 </LinkButton>
-                <LinkButton href={hostel.mapsShareUrlAlt} external variant="outline">
+                <LinkButton
+                  href={hostel.mapsShareUrlAlt}
+                  external
+                  variant="outline"
+                  ariaLabel="Open alternate Google Maps listing"
+                >
                   Alternate Maps link
                 </LinkButton>
               </div>
@@ -387,9 +430,10 @@ export default function Home() {
               <LinkButton
                 href={callLink()}
                 size="lg"
+                ariaLabel={`Call ${hostel.phoneDisplay}`}
                 className="h-12 min-w-[200px] bg-teal text-white hover:bg-teal/90"
               >
-                <Phone className="size-5" />
+                <Phone className="size-5" aria-hidden />
                 {hostel.phoneDisplay}
               </LinkButton>
               <LinkButton
@@ -397,18 +441,20 @@ export default function Home() {
                 external
                 size="lg"
                 variant="outline"
+                ariaLabel="Chat on WhatsApp"
                 className="h-12 min-w-[200px] border-[#25D366]/40 text-[#128C7E] hover:bg-[#25D366]/10"
               >
-                <MessageCircle className="size-5" />
+                <MessageCircle className="size-5" aria-hidden />
                 Chat on WhatsApp
               </LinkButton>
               <LinkButton
                 href={emailLink()}
                 size="lg"
                 variant="outline"
+                ariaLabel={`Email ${hostel.email}`}
                 className="h-12 min-w-[200px]"
               >
-                <Mail className="size-5" />
+                <Mail className="size-5" aria-hidden />
                 {hostel.email}
               </LinkButton>
             </div>
@@ -423,16 +469,25 @@ export default function Home() {
             <p className="mt-1 text-sm text-white/60">{hostel.addressOneLine}</p>
           </div>
           <div className="flex flex-wrap gap-4 text-sm">
-            <a href={callLink()} className="text-white/80 transition hover:text-white">
+            <a
+              href={callLink()}
+              aria-label={`Call ${hostel.phoneDisplay}`}
+              className="text-white/80 transition hover:text-white"
+            >
               {hostel.phoneDisplay}
             </a>
-            <a href={emailLink()} className="text-white/80 transition hover:text-white">
+            <a
+              href={emailLink()}
+              aria-label={`Email ${hostel.email}`}
+              className="text-white/80 transition hover:text-white"
+            >
               {hostel.email}
             </a>
             <a
               href={whatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Chat on WhatsApp"
               className="text-white/80 transition hover:text-white"
             >
               WhatsApp
@@ -441,6 +496,7 @@ export default function Home() {
               href={hostel.mapsShareUrl}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Open Google Maps"
               className="text-white/80 transition hover:text-white"
             >
               Maps
@@ -451,21 +507,28 @@ export default function Home() {
 
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-white/95 p-3 backdrop-blur md:hidden">
         <div className="grid grid-cols-2 gap-2">
-          <LinkButton href={callLink()} className="bg-teal text-white hover:bg-teal/90">
-            <Phone className="size-4" />
+          <LinkButton
+            href={callLink()}
+            ariaLabel={`Call ${hostel.phoneDisplay}`}
+            className="bg-teal text-white hover:bg-teal/90"
+          >
+            <Phone className="size-4" aria-hidden />
             Call
           </LinkButton>
           <LinkButton
             href={whatsappLink()}
             external
+            ariaLabel="Chat on WhatsApp"
             className="bg-[#25D366] text-white hover:bg-[#1ebe57]"
           >
-            <MessageCircle className="size-4" />
+            <MessageCircle className="size-4" aria-hidden />
             WhatsApp
           </LinkButton>
         </div>
       </div>
       <div className="h-20 md:hidden" aria-hidden />
     </>
-  );
+  )
 }
+
+export default Home

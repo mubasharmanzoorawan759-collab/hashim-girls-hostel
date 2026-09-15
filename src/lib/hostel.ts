@@ -121,16 +121,28 @@ export const hostel = {
         "Wi‑Fi is reliable and the terrace view is peaceful. Meals are home-style and consistent.",
     },
   ],
-} as const;
+  navItems: [
+    { href: "#amenities", label: "Facilities" },
+    { href: "#pricing", label: "Fees" },
+    { href: "#gallery", label: "Photos" },
+    { href: "#reviews", label: "Reviews" },
+    { href: "#location", label: "Location" },
+    { href: "#contact", label: "Contact" },
+  ],
+} as const
 
-export function whatsappLink(message: string = hostel.whatsappMessage) {
-  return `https://wa.me/${hostel.whatsapp}?text=${encodeURIComponent(message)}`;
+export type AmenityIconName = (typeof hostel.amenities)[number]["icon"]
+export type ButtonVariant = "default" | "outline" | "secondary" | "ghost" | "destructive" | "link"
+export type ButtonSize = "default" | "xs" | "sm" | "lg" | "icon" | "icon-xs" | "icon-sm" | "icon-lg"
+
+export const whatsappLink = (message: string = hostel.whatsappMessage) => {
+  return `https://wa.me/${hostel.whatsapp}?text=${encodeURIComponent(message)}`
 }
 
-export function callLink() {
-  return `tel:${hostel.phoneTel}`;
+export const callLink = () => {
+  return `tel:${hostel.phoneTel}`
 }
 
-export function emailLink() {
-  return `mailto:${hostel.email}`;
+export const emailLink = () => {
+  return `mailto:${hostel.email}`
 }
