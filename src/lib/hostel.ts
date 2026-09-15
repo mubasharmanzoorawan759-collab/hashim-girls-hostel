@@ -50,9 +50,9 @@ export const hostel = {
       icon: "shop" as const,
     },
     {
-      title: "Secure location",
+      title: "Near Global Academy & College",
       description:
-        "Gated premises in Upper Chattar with a calm mountain setting — suitable for girls studying in Muzaffarabad.",
+        "Short commute to Global Academy and nearby colleges in Muzaffarabad — more time for study.",
       icon: "location" as const,
     },
   ],

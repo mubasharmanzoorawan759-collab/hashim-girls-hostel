@@ -324,8 +324,8 @@ export default function Home() {
                 Upper Chattar, Muzaffarabad
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-                Located in Upper Chattar with mountain views — a practical base for girls studying
-                in Muzaffarabad, Azad Kashmir.
+                Located in Upper Chattar, Muzaffarabad — close to Global Academy and nearby
+                colleges, with hill views from the terrace.
               </p>
 
               <div className="mt-8 flex gap-3">
@@ -437,8 +437,13 @@ export default function Home() {
             >
               WhatsApp
             </a>
-            <a href={`mailto:${hostel.email}`} className="text-white/80 transition hover:text-white">
-              {hostel.email}
+            <a
+              href={hostel.mapsShareUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/80 transition hover:text-white"
+            >
+              Maps
             </a>
           </div>
         </div>
